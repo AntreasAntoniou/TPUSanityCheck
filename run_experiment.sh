@@ -1,5 +1,5 @@
 #!/bin/bash
-python3 train.py +trainer.tpu_cores=8 datamodule.batch_size=1024 +trainer.strategy=ddp +trainer.sync_batchnorm=True
+python3 train.py trainer.gpus=2 datamodule.batch_size=1024 trainer.strategy=ddp trainer.sync_batchnorm=True
 
  python3 run.py hydra.verbose=True \
  resume=False \
@@ -59,7 +59,7 @@ python3 run.py \
  datamodule.config.modality_config.video=True \
  datamodule.config.rescan_paths=False \
  datamodule.prefetch_factor=1 \
- datamodule.config.dataset_size_identifier=base \
+ datamodule.config.dataset_size_identifier=base
  wandb_project_name=local-tpu-dev model=base_dumbus_prime_vi-transformer16 \
  logging_level=DEBUG \
  model.image_embedding_config._target_=tali.models.auto_builder.transformers.AutoDumbNet \
