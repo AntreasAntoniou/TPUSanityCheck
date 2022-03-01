@@ -59,8 +59,7 @@ python3 run.py \
  datamodule.config.modality_config.video=True \
  datamodule.config.rescan_paths=False \
  datamodule.prefetch_factor=1 \
- datamodule.config.dataset_size_identifier=base
- wandb_project_name=local-tpu-dev model=base_dumbus_prime_vi-transformer16 \
- logging_level=DEBUG \
- model.image_embedding_config._target_=tali.models.auto_builder.transformers.AutoDumbNet \
- +model.image_embedding_config.embedding_output_features=512
+ datamodule.config.dataset_size_identifier=base \
+ wandb_project_name=local-tpu-dev \
+ model=base_dumbus_prime_vi-transformer16 \
+ logging_level=DEBUG
