@@ -30,9 +30,6 @@ def get_logger(name=__name__) -> logging.Logger:
     return logger
 
 
-log = get_logger(__name__)
-
-
 def extras(config: DictConfig) -> None:
     """Applies optional utilities, controlled by config flags.
 
@@ -40,6 +37,7 @@ def extras(config: DictConfig) -> None:
     - Ignoring python warnings
     - Rich config printing
     """
+    log = get_logger(__name__)
 
     # disable python warnings if <config.ignore_warnings=True>
     if config.get("ignore_warnings"):
@@ -78,7 +76,9 @@ def print_config(
     quee = []
 
     for field in print_order:
-        quee.append(field) if field in config else log.info(f"Field '{field}' not found in config")
+        quee.append(field) if field in config else log.info(
+            f"Field '{field}' not found in config"
+        )
 
     for field in config:
         if field not in quee:
