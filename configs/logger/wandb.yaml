@@ -5,7 +5,6 @@ wandb:
   project: "template-tests"
   # name: ${name}
   resume: allow
-  save_dir: "."
   offline: False # set True to store all logs only locally
   id: null # pass correct id to resume experiment!
   # entity: ""  # set to name of your wandb team
