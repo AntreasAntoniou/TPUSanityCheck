@@ -47,9 +47,29 @@ python3 train.py trainer.gpus=2 datamodule.batch_size=1024 trainer.strategy=ddp 
 python3 run.py \
  hydra.verbose=True \
  resume=False \
- batch_size=8 \
- datamodule.num_workers=10 \
+ batch_size=4 \
+ datamodule.num_workers=8 \
  trainer.gpus=2 \
+ trainer.strategy=ddp \
+ +trainer.sync_batchnorm=True \
+ datamodule=debug-tali \
+ datamodule.config.modality_config.image=True \
+ datamodule.config.modality_config.text=True \
+ datamodule.config.modality_config.audio=True \
+ datamodule.config.modality_config.video=True \
+ datamodule.config.rescan_paths=False \
+ datamodule.prefetch_factor=1 \
+ datamodule.config.dataset_size_identifier=base \
+ wandb_project_name=local-tpu-dev \
+ model=base_dumbus_prime_vi-transformer16 \
+ logging_level=DEBUG
+
+ python3 run.py \
+ hydra.verbose=True \
+ resume=False \
+ batch_size=4 \
+ datamodule.num_workers=8 \
+ trainer.gpus=1 \
  trainer.strategy=ddp \
  +trainer.sync_batchnorm=True \
  datamodule=debug-tali \
