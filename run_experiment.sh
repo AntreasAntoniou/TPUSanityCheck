@@ -65,13 +65,11 @@ python3 run.py \
  logging_level=DEBUG
 
  python3 run.py \
- hydra.verbose=True \
+ hydra.verbose=False \
  resume=False \
- batch_size=4 \
+ batch_size=2 \
  datamodule.num_workers=8 \
- trainer.gpus=1 \
- trainer.strategy=ddp \
- +trainer.sync_batchnorm=True \
+ trainer=ddp \
  datamodule=debug-tali \
  datamodule.config.modality_config.image=True \
  datamodule.config.modality_config.text=True \
@@ -80,6 +78,6 @@ python3 run.py \
  datamodule.config.rescan_paths=False \
  datamodule.prefetch_factor=1 \
  datamodule.config.dataset_size_identifier=base \
- wandb_project_name=local-tpu-dev \
- model=base_dumbus_prime_vi-transformer16 \
- logging_level=DEBUG
+ wandb_project_name=local-dev \
+ model=base_modus_prime_vi-transformer16 \
+ datamodule.train_num_samples=10000
