@@ -99,3 +99,6 @@ python3 run.py \
  model=base_modus_prime_vi-transformer16 \
  datamodule.train_num_samples=10000 \
  debug_data=True
+
+
+ python3 run.py  hydra.verbose=False  resume=False  batch_size=10  datamodule.dataloader_config.num_workers=80  trainer=ddp  trainer.gpus=1 datamodule=tali  datamodule.dataset_config.modality_config.image=True  datamodule.dataset_config.modality_config.text=True  datamodule.dataset_config.modality_config.audio=True  datamodule.dataset_config.modality_config.video=True  datamodule.dataset_config.rescan_paths=False  datamodule.dataloader_config.prefetch_factor=1  datamodule.dataset_config.dataset_size_identifier=base  wandb_project_name=local-dev  model=base_modus_prime_vi-transformer16  datamodule.dataloader_config.train_num_samples=200000000 trainer.val_check_interval=0.025
